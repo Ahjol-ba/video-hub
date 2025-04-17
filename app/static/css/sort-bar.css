@@ -1,0 +1,68 @@
+.sort-bar-container {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 1vw 0vw;
+    background-color: var(--header-bg-color);
+}
+
+.sort-bar-wrapper {
+    display: block;
+    width: 55vw;
+    height: 2vw;
+    margin: 0 1.2vw;
+    border-radius: 5vw;
+    background: linear-gradient(135deg, #0e4324 10%, #345b97 100%);
+    box-sizing: border-box;
+}
+
+.sort-bar {
+    display: flex;
+    width: 94%;
+    height: inherit;
+    padding: 0 3%;
+    overflow: hidden;
+    background: transparent;
+}
+
+.btn-sort {
+    display: flex;
+    width: 25%;
+    height: inherit;
+    color: var(--text-color);
+    background: transparent;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.btn-sort span {
+    width: 75%;
+    font-size: 1.3vw;
+}
+
+.btn-sort img {
+    display: none;
+    height: 1.2vw;
+    margin: 0.2vw;
+}
+
+@media screen and (max-width: 768px) {
+    .sort-bar-wrapper {
+        width: 90vw;
+        height: 5vw;
+        margin: 0 5vw;
+    }
+
+    .btn-sort {
+        height: 5vw;
+    }
+
+    .btn-sort span {
+        font-size: 3vw;
+    }
+
+    .btn-sort img {
+        height: 3vw;
+        margin: 1vw 0;
+    }
+}

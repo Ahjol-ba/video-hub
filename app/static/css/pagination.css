@@ -1,0 +1,42 @@
+.page-bar-wrapper {
+    display: flex;
+    width: 100%;
+    padding: 2vw 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.page-bar {
+    display: flex;
+    width: auto;
+    height: auto;
+}
+.page-bar span {
+    display: block;
+    height: auto;
+    margin: 0 1vw;
+}
+.btn-page {
+    width: auto;
+    min-width: 3vw;
+    margin: 0 0.5vw;
+    padding: 0 1vw;
+    border-radius: 999vw;
+    background: linear-gradient(135deg, #92ff96 10%, #003c61 100%);
+    color: var(--text-color);
+    font-size: 1.3vw;
+    transition: all 0.5s ease;
+}
+@media screen and (max-width: 768px) {
+    .btn-page {
+        height: 5vw;
+        margin: 2vw 1vw;
+        min-width: 6vw;
+        font-size: 3vw;
+    }
+    .page-bar span {
+        display: block;
+        margin: 0 1vw;
+        margin: 2vw 1vw;
+    }
+}

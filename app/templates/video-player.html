@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/static/css/video-player.css" />
+<div class="player">
+    <!-- 播放器头部 -->
+    <div class="player-head">
+        <img src="/static/img/camera.svg" alt="Camera Icon" />
+        <div class="video-name">{{ video_name }}</div>
+    </div>
+
+    <!-- 视频播放区域 -->
+    <video class="player-body" autoplay controls preload="auto" src="{{video_path}}"></video>
+</div>

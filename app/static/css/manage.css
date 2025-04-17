@@ -1,0 +1,74 @@
+/* 简单示例样式，可根据实际需求进行扩展 */
+#video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.video-card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.video-card.expanded {
+    transform: scale(1.05);
+    z-index: 10;
+}
+.thumb-wrapper {
+    position: relative;
+}
+.thumb {
+    width: 100%;
+    display: block;
+}
+.stats {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+.video-info {
+    padding: 10px;
+}
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.info span {
+    margin-right: 5px;
+    font-size: 12px;
+    color: #666;
+}
+.expanded-form {
+    padding: 10px;
+    background: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+.expanded-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.expanded-form input {
+    width: 95%;
+    padding: 3px;
+    margin-top: 2px;
+}
+.expanded-form button {
+    margin-top: 8px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.thumbnail-preview img {
+    width: 100%;
+    margin-top: 10px;
+}

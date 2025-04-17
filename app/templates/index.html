@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Media Library</title>
+    </head>
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <link rel="stylesheet" href="/static/css/video-card.css" />
+    <body>
+        <div class="container">
+            <header>
+                <a href="/"><h1>My Media Library</h1></a>
+
+                {% include 'search-bar.html' %}
+            </header>
+            <!-- 筛选功能 -->
+            <div>{% include 'filter-bar.html' %}</div>
+            <div>{% include 'sort-bar.html' %}</div>
+
+            <div class="showcase">{% for video in videos %} {% include 'video-card.html' %} {% endfor %}</div>
+            <div class="pagination">{% if pagination %} {% include 'pagination.html' %} {% endif%}</div>
+        </div>
+    </body>
+</html>
+<script src="/static/js/video-card.js/"></script>
+<script src="/static/js/search-bar.js/"></script>
+<script src="/static/js/index.js"></script>
+<script src="/static/js/pagination.js"></script>

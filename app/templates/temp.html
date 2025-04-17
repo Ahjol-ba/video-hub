@@ -1,0 +1,129 @@
+{% for video in videos %}
+<div class="video-card" data-video-uuid="{{ video.uuid }}"></div>
+{% endfor %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        queryVideos();
+        const videoCards = document.querySelectorAll(".video-card");
+
+        // 点击卡片时切换展开状态
+        videoCards.forEach((card) => {
+            card.addEventListener("click", function (event) {
+                // 如果点击发生在展开表单内部，则不触发展开/收缩逻辑
+                if (event.target.closest(".expanded-form")) return;
+                // 收缩其他卡片
+                videoCards.forEach((c) => {
+                    if (c !== card) {
+                        c.classList.remove("expanded");
+                        let form = c.querySelector(".expanded-form");
+                        if (form) form.style.display = "none";
+                    }
+                });
+                // 切换当前卡片状态
+                if (card.classList.contains("expanded")) {
+                    card.classList.remove("expanded");
+                    let form = card.querySelector(".expanded-form");
+                    if (form) form.style.display = "none";
+                } else {
+                    card.classList.add("expanded");
+                    let form = card.querySelector(".expanded-form");
+                    if (form) form.style.display = "block";
+                }
+            });
+        });
+
+        // 阻止点击展开表单内部元素导致父级卡片收缩
+        const forms = document.querySelectorAll(".expanded-form");
+        forms.forEach((form) => {
+            form.addEventListener("click", function (e) {
+                e.stopPropagation();
+            });
+        });
+
+        // 绑定更新和重新生成截屏事件
+        videoCards.forEach((card) => {
+            const uuid = card.getAttribute("data-video-uuid");
+
+            // 更新视频信息按钮
+            const btnUpdate = card.querySelector(".btn-update");
+            if (btnUpdate) {
+                btnUpdate.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const newName = card.querySelector(".input-name").value;
+                    const categories = card.querySelector(".input-categories").value;
+                    const region = card.querySelector(".input-region").value;
+                    const era = card.querySelector(".input-era").value;
+
+                    let formData = new FormData();
+                    formData.append("video_uuid", uuid);
+                    formData.append("video_new_name", newName);
+                    formData.append("categories", categories);
+                    formData.append("region", region);
+                    formData.append("era", era);
+
+                    fetch("/api/update", {
+                        method: "POST",
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.error) {
+                                alert("更新失败：" + data.error);
+                            } else {
+                                alert("视频信息更新成功");
+                                // 同步更新卡片中的标题
+                                card.querySelector(".title").textContent = newName;
+                            }
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                            alert("更新请求发生错误。");
+                        });
+                });
+            }
+
+            // 重新生成截屏按钮
+            const btnRegenerate = card.querySelector(".btn-regenerate-thumbnail");
+            if (btnRegenerate) {
+                btnRegenerate.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const customTime = card.querySelector(".input-custom-time").value;
+
+                    let formData = new FormData();
+                    formData.append("video_uuid", uuid);
+                    if (customTime) {
+                        formData.append("custom_time", customTime);
+                    }
+
+                    fetch("/api/regenerate_thumbnail", {
+                        method: "POST",
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.error) {
+                                alert("重新生成截屏失败：" + data.error);
+                            } else {
+                                alert("截屏已重新生成");
+                                // 更新视频卡片以及预览中的缩略图，为防止缓存，附加时间戳
+                                const thumbImg = card.querySelector(".thumb");
+                                const previewImg = card.querySelector(".thumbnail-preview img");
+                                const timestamp = new Date().getTime();
+                                if (thumbImg) {
+                                    thumbImg.src = thumbImg.src.split("?")[0] + "?t=" + timestamp;
+                                }
+                                if (previewImg) {
+                                    previewImg.src = previewImg.src.split("?")[0] + "?t=" + timestamp;
+                                }
+                            }
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                            alert("请求重新生成截屏时发生错误。");
+                        });
+                });
+            }
+        });
+    });
+</script>

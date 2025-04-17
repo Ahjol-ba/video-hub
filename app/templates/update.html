@@ -1,0 +1,49 @@
+<!-- 缩略图和统计 -->
+<div class="thumb-wrapper">
+    <!-- 注意：此处假设截屏文件存放在指定目录，实际路径根据项目配置修改 -->
+    <img src="/static/thumbs/{{ video.uuid }}.jpg" alt="{{ video.name }} 缩略图" class="thumb" />
+    <div class="stats">
+        <img src="/static/img/play.svg" alt="播放图标" width="16" />
+    </div>
+</div>
+<!-- 视频基本信息 -->
+<div class="video-info">
+    <div class="title">{{ video.name }}</div>
+    <div class="info">
+        <span class="resolution">{{ video.resolution.name if video.resolution else '' }}</span>
+        <span class="size">{{ video.size }} MB</span>
+        <span class="upload-date">{{ video.upload_date.strftime('%Y-%m-%d') }}</span>
+    </div>
+</div>
+
+<div class="expanded-form" style="display: none">
+    <label>
+        名称：
+        <input type="text" class="input-name" value="{{ video.name }}" />
+    </label>
+    <label>
+        分类（逗号分隔）：
+        <input
+            type="text"
+            class="input-categories"
+            value="{% for cat in video.categories %}{{ cat.name }}{% if not loop.last %}, {% endif %}{% endfor %}"
+        />
+    </label>
+    <label>
+        地区：
+        <input type="text" class="input-region" value="{{ video.region.name if video.region else '' }}" />
+    </label>
+    <label>
+        时代：
+        <input type="text" class="input-era" value="{{ video.era.name if video.era else '' }}" />
+    </label>
+    <label>
+        截屏时间（秒，可选）：
+        <input type="text" class="input-custom-time" placeholder="例如：5.0" />
+    </label>
+    <button class="btn-update">更新视频信息</button>
+    <button class="btn-regenerate-thumbnail">重新生成截屏</button>
+    <div class="thumbnail-preview">
+        <img src="/static/thumbs/{{ video.uuid }}.jpg" alt="截屏预览" />
+    </div>
+</div>

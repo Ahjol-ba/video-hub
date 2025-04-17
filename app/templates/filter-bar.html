@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/static/css/filter-bar.css" />
+<div class="filter-bar-container">
+    {% for key,list in filtes.items() %} 
+    {% if list %}
+    <div class="filter-bar-wrapper">
+        <div class="filter-bar">
+            <button class="btn btn-filter selected" key="{{key}}" idx="" onclick="filterBtnCilcked(event)">All</button>
+            {% for item in list %}
+            <button class="btn btn-filter" key="{{key}}" idx="{{ item.id }}" onclick="filterBtnCilcked(event)">{{ item.name }}</button>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} 
+    {% endfor %}
+</div>
+<script src="/static/js/filter-bar.js"></script>

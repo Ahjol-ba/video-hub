@@ -1,0 +1,23 @@
+<!-- templates/video-card.html -->
+<div class="video-card" value="{{video_uuid}}" onclick="videoCardClicked(event)">
+    <!-- 视频缩略图 -->
+    <div class="thumb-wrapper">
+        <img src="{{thumb_path}}" alt="" class="thumb" />
+        <!-- 点赞量、播放量、评论数和时长 -->
+        <div class="stats">
+            <img src="/static/img/play.svg" alt="" />
+            <span> {{ video_play_count }} </span>
+            <span id="span-duration"> {{ video_duration }}</span>
+        </div>
+    </div>
+    <!-- 视频名称、上传日期和文件大小 -->
+    <div>
+        <div class="title">{{ video_name }}</div>
+        <div class="info">
+            <span>{{ video_resolution }}</span>
+            <span>-</span>
+            <span>{{ video_size }}</span>
+            <span id="span-uploda_date">{{ video_upload_date.strftime('%Y-%m-%d') }}</span>
+        </div>
+    </div>
+</div>

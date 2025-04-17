@@ -1,0 +1,101 @@
+:root {
+    --header-bg-color: #1a1a1a;
+    --header-text-color: #00ff00;
+    --body-bg-color: #121212;
+    --card-bg-color: #1e1e1e;
+    --border-color: #333333;
+    --text-color: #e0e0e0;
+    --text-deep-color: #aea8a8;
+    --accent-color: #1e7f35;
+    --molandy-color: rgba(75, 223, 95, 0.3);
+    --accent-hover-color: #2bf45a;
+    --accent-selected-color: #00ff00;
+    --animation-duration: 0.3s;
+    --boder-line-color: #6dff6d;
+    /* --global-min-width: 1280px; */
+    /* --global-max-width: 3840px; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    width: auto;
+    height: 5vw;
+    background-color: var(--header-bg-color);
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    gap: 3vw;
+    border-bottom: 0.1vw solid var(--boder-line-color);
+}
+
+header h1 {
+    margin-left: 3vw;
+    font-size: 3vw;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--header-text-color);
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    box-shadow: 0.1vw 0.1vw 1vw rgba(43, 244, 90, 0.3), 0.1vw -0.1vw 1vw rgba(222, 255, 76, 0.3), -0.1vw 0.1vw 1vw rgba(64, 255, 185, 0.3),
+        -0.1vw -0.1vw 1vw rgba(53, 231, 255, 0.3);
+}
+
+.btn.selected {
+    background: linear-gradient(135deg, #b742ed 10%, #51e38e 100%);
+    box-shadow: 0.1vw 0.1vw 1vw rgba(43, 244, 90, 0.3), 0.1vw -0.1vw 1vw rgba(222, 255, 76, 0.3), -0.1vw 0.1vw 1vw rgba(64, 255, 185, 0.3),
+        -0.1vw -0.1vw 1vw rgba(53, 231, 255, 0.3);
+    transition: 0.5s translate(0.1vw, 0.1vw);
+    /* border: 0.2vw solid rgba(0, 0, 0, 0.5); */
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        height: 10vw;
+        gap: 5vw;
+    }
+
+    header h1 {
+        font-size: 5vw;
+    }
+}
+
+.showcase {
+    margin-top: 2vw;
+    place-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 18vw);
+    gap: 2vw;
+}
+
+#there-is-empty {
+    width: 38vw;
+}
+@media screen and (max-width: 768px) {
+    .showcase {
+        grid-template-columns: repeat(2, 44vw);
+    }
+    #there-is-empty {
+        margin-top: 20vw;
+        width: 60vw;
+    }
+}

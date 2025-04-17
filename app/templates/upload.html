@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Upload Video</title>
+  </head>
+  <body>
+    <h1>Upload Video</h1>
+    <!-- form 移除 action 和 method，使用 id 方便 JavaScript 绑定事件 -->
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" id="csrf_token", value="">
+      <input type="file" name="video" />
+      <input type="submit" value="Submit" />
+    </form>
+    <!-- 用于显示上传状态信息 -->
+    <div id="uploadStatus"></div>
+    
+    <script>
+      function get_csrf_token() {
+          fetch("/api/get_csrf_token", {method: 'GET'})
+              .then((response) => response.json())
+              .then((data) => {
+                  document.getElementById("csrf_token").value = data.csrf_token;
+              });
+      }
+      
+      document.addEventListener("DOMContentLoaded", function () {
+          get_csrf_token()
+      })
+      
+      document.getElementById('uploadForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // 阻止表单默认提交，避免页面刷新
+
+        // 使用 FormData 对象包装上传内容
+        const formData = new FormData(this);
+
+        // 调用 fetch API 提交数据到后端接口
+        fetch('/api/upload', {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': get_csrf_token()  
+          },
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          const statusDiv = document.getElementById('uploadStatus');
+          if (data.error) {
+            statusDiv.innerText = 'Error: ' + data.error;
+          } else {
+            statusDiv.innerText = 'Success:\n' + data.message + 'name: ' + 'data.name' + '\n' + 'uuid: ' + data.uuid;
+          }
+        })
+        .catch(err => {
+          document.getElementById('uploadStatus').innerText = err;
+        });
+      });
+    </script>
+  </body>
+</html>

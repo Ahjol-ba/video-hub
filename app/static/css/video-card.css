@@ -1,0 +1,118 @@
+.video-card {
+    display: inline-block;
+    width: 18vw;
+    height: 13.5vw;
+    border-radius: 0.7vw;
+    background-color: #313131;
+    transition: all 0.5s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0.5vw 0.5vw 3vw rgba(43, 244, 90, 0.3), 0.5vw -0.5vw 3vw rgba(222, 255, 76, 0.3), -0.5vw 0.5vw 3vw rgba(64, 255, 185, 0.3),
+        -0.5vw -0.5vw 3vw rgba(53, 231, 255, 0.3);
+    /* box-shadow: 0px 0px 1vw greenyellow; */
+}
+
+.thumb-wrapper {
+    width: 96%;
+    height: 72%;
+    margin: 2%;
+    position: relative;
+}
+
+.thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5vw;
+}
+
+.stats {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 12%;
+    bottom: 0;
+    border-radius: 0px 0px 0.5vw 0.5vw;
+    background: linear-gradient(125deg, rgba(129, 251, 184, 0.6) 10%, /* #81FBB8 70% 透明度 */ rgba(12, 16, 14, 0.6) 100% /* #28C76F 70% 透明度 */);
+    /* background-color: aqua; */
+    color: #fff;
+    font-size: 0.8vw;
+}
+
+.stats img {
+    width: auto;
+    height: 100%;
+    margin-left: 0.5vw;
+}
+
+.stats span {
+    width: 20%;
+    margin: 1% 1%;
+}
+
+#span-duration {
+    width: auto;
+    margin-left: auto;
+}
+
+.title {
+    display: flex;
+    width: 96%;
+    margin: 0% 2%;
+    color: #e0e0e0;
+    font-size: 1.3vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info {
+    display: flex;
+    color: #aea8a8;
+    font-size: 0.8vw;
+}
+
+.info span {
+    margin: 0% 2%;
+}
+
+#span-uploda_date {
+    margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .video-card {
+        width: 44vw;
+        height: 33vw;
+        border-radius: 2vw;
+    }
+
+    .video-card:hover {
+        box-shadow: 0.5vw 0.5vw 3vw rgba(43, 244, 90, 0.3), 0.5vw -0.5vw 3vw rgba(222, 255, 76, 0.3), -0.5vw 0.5vw 3vw rgba(64, 255, 185, 0.3),
+            -0.5vw -0.5vw 3vw rgba(53, 231, 255, 0.3);
+        /* box-shadow: 0px 0px 1vw greenyellow; */
+    }
+
+    .thumb {
+        border-radius: 1vw;
+    }
+
+    .stats {
+        width: 100%;
+        height: 15%;
+        border-radius: 0px 0px 1vw 1vw;
+        font-size: 2.5vw;
+    }
+
+    .title {
+        font-size: 3.5vw;
+    }
+
+    .info {
+        font-size: 2vw;
+    }
+
+    .info span {
+        margin: 0% 2%;
+    }
+}

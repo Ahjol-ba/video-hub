@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/static/css/common.css" />
+<link rel="stylesheet" href="/static/css/search-bar.css" />
+
+<!-- search-bar.html -->
+<div class="search-bar-wrapper">
+    <div class="search-bar">
+        <button class="btn btn-search" id="enter-search" onclick="searchEnterListener(event)">
+            <img src="/static/img/search.svg" alt="" />
+        </button>
+        <input id="input-search" type="text" placeholder="Search..." maxlength="50" oninput="searchInputListener(event)" />
+        <button class="btn btn-search" id="clear-search" onclick="searchClearListener(event)">
+            <img src="/static/img/close.svg" alt="" />
+        </button>
+    </div>
+</div>

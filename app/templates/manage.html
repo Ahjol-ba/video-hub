@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Manage Videos</title>
+        <!-- 这里可以引入你项目中已有的 CSS 文件 -->
+        <link rel="stylesheet" href="/static/css/common.css" />
+        <link rel="stylesheet" href="/static/css/video-card.css" />
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <a href="/"><h1>My Media Library</h1></a>
+                {% include 'search-bar.html' %}
+            </header>
+            <div class="showcase">{% for video in videos %} {% include 'video-card.html' %} {% endfor %}</div>
+            <div class="pagination">{% if pagination %} {% include 'pagination.html' %} {% endif%}</div>
+        </div>
+    </body>
+</html>
+<script src="/static/js/search-bar.js/"></script>
+<script src="/static/js/video-card.js/"></script>
+<script>
+    // 更新当前页面
+    function updateCurrentPage() {
+        queryVideos();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // 获取 URL 参数
+        const params = new URLSearchParams(window.location.search);
+        // 重新渲染页面
+        params.keys().forEach((key) => {
+            if (key === "search") {
+                renderSearchBar(params.get(key, ""));
+            }
+            queryVideos();
+        });
+    });
+
+    function queryVideos() {
+        const params = new URLSearchParams(window.location.search);
+        fetch("/api/videos?" + params.toString())
+            .then((response) => response.json())
+            .then((data) => {
+                const showcase = document.querySelector(".showcase");
+                if (data.videos_num > 0) {
+                    showcase.style["display"] = "grid";
+                    showcase.innerHTML = data.video_card_html_list.join("");
+                } else {
+                    showcase.style["display"] = "flex";
+                    showcase.innerHTML = "<img src='/static/img/empty.svg' id='there-is-empty'>";
+                }
+                const pagination = document.querySelector(".pagination");
+                pagination.innerHTML = data.pagination_html;
+            })
+            .catch((err) => console.error("Error:search failed.", err));
+    }
+</script>
+
+<script src="/static/js/pagination.js"></script>

@@ -1,0 +1,20 @@
+.showcase {
+    margin-top: 2vw;
+    place-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 18vw);
+    gap: 2vw;
+}
+
+#there-is-empty {
+    width: 38vw;
+}
+@media screen and (max-width: 768px) {
+    .showcase {
+        grid-template-columns: repeat(2, 44vw);
+    }
+    #there-is-empty {
+        margin-top: 20vw;
+        width: 60vw;
+    }
+}

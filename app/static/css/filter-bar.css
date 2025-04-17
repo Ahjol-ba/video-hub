@@ -1,0 +1,62 @@
+.filter-bar-container {
+    display: block;
+    height: auto;
+    align-items: center;
+    background-color: var(--header-bg-color);
+}
+.filter-bar-wrapper {
+    width: 100vw;
+    height: auto;
+}
+.filter-bar {
+    width: 96%;
+    height: auto;
+    padding: 0 2%;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.filter-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-filter {
+    width: auto;
+    height: 2vw;
+    margin: 1vw 0.3vw;
+    padding: 0 1vw;
+    border-radius: 999vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: linear-gradient(135deg, #92ff96 10%, #003c61 100%);
+    color: var(--text-color);
+    font-size: 1.3vw;
+    transition: all 0.5s ease;
+}
+
+.btn-filter:hover {
+    box-shadow: 0.1vw 0.1vw 1vw rgba(43, 244, 90, 0.3), 0.1vw -0.1vw 1vw rgba(222, 255, 76, 0.3), -0.1vw 0.1vw 1vw rgba(64, 255, 185, 0.3),
+        -0.1vw -0.1vw 1vw rgba(53, 231, 255, 0.3);
+}
+
+.btn-filter.selected {
+    /* padding: 0.5vw 0.5vw; */
+    background: linear-gradient(135deg, #b742ed 10%, #51e38e 100%);
+    box-shadow: 0.1vw 0.1vw 1vw rgba(43, 244, 90, 0.3), 0.1vw -0.1vw 1vw rgba(222, 255, 76, 0.3), -0.1vw 0.1vw 1vw rgba(64, 255, 185, 0.3),
+        -0.1vw -0.1vw 1vw rgba(53, 231, 255, 0.3);
+    transition: 0.5s translate(0.1vw, 0.1vw);
+    /* border: 0.2vw solid rgba(0, 0, 0, 0.5); */
+}
+
+@media screen and (max-width: 768px) {
+    .btn.btn-filter {
+        height: 5vw;
+        margin: 2vw 1vw;
+        min-width: 15vw;
+        font-size: 3vw;
+    }
+}

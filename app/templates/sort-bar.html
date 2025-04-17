@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/static/css/common.css" />
+<link rel="stylesheet" href="/static/css/sort-bar.css" />
+
+<!-- sort-bar -->
+<div class="sort-bar-container">
+    <div class="sort-bar-wrapper">
+        <div class="sort-bar">
+            {% for key in sort_keys %}
+            <button class="btn btn-sort" key="{{key}}" order="" onclick="sortButtonCilcked(event)">
+                <span>{{ key }}</span>
+                <img src="/static/img/arrow-up.svg" order="asc" alt="" />
+                <img src="/static/img/arrow-dn.svg" order="desc" alt="" />
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="/static/js/sort-bar.js"></script>

@@ -1,0 +1,16 @@
+
+services:  
+  video-hub:
+    build: 
+      context: .
+    image: vhub:latest
+    env_file:
+      - .env
+    restart: always
+    container_name: vhub
+    volumes:
+      - ./app:/app
+      - ../data:/data
+      - ${VIDEOS_FOLDER}:/app/static/videos
+    ports:
+      - 9000:5000
